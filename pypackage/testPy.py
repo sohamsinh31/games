@@ -7,8 +7,6 @@ delay = 0.1
 score = 0
 high_score = 0
 
-
-
 # Creating a window screen
 wn = turtle.Screen()
 wn.title("Snake Game")
@@ -46,7 +44,6 @@ pen.write("Score : 0 High Score : 0", align="center",
           font=("candara", 24, "bold"))
 
 
-
 # assigning key directions
 def group():
     if head.direction != "down":
@@ -71,17 +68,16 @@ def goright():
 def move():
     if head.direction == "up":
         y = head.ycor()
-        head.sety(y+20)
+        head.sety(y + 20)
     if head.direction == "down":
         y = head.ycor()
-        head.sety(y-20)
+        head.sety(y - 20)
     if head.direction == "left":
         x = head.xcor()
-        head.setx(x-20)
+        head.setx(x - 20)
     if head.direction == "right":
         x = head.xcor()
-        head.setx(x+20)
-
+        head.setx(x + 20)
 
 
 wn.listen()
@@ -91,8 +87,6 @@ wn.onkeypress(goleft, "a")
 wn.onkeypress(goright, "d")
 
 segments = []
-
-
 
 # Main Gameplay
 while True:
@@ -120,7 +114,7 @@ while True:
         new_segment = turtle.Turtle()
         new_segment.speed(0)
         new_segment.shape("square")
-        new_segment.color("orange") # tail colour
+        new_segment.color("orange")  # tail colour
         new_segment.penup()
         segments.append(new_segment)
         delay -= 0.001
@@ -131,9 +125,9 @@ while True:
         pen.write("Score : {} High Score : {} ".format(
             score, high_score), align="center", font=("candara", 24, "bold"))
     # Checking for head collisions with body segments
-    for index in range(len(segments)-1, 0, -1):
-        x = segments[index-1].xcor()
-        y = segments[index-1].ycor()
+    for index in range(len(segments) - 1, 0, -1):
+        x = segments[index - 1].xcor()
+        y = segments[index - 1].ycor()
         segments[index].goto(x, y)
     if len(segments) > 0:
         x = head.xcor()

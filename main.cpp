@@ -6,24 +6,28 @@
 
 using namespace std;
 
+int i, j, height = 20, width = 20;
+int gameover, score;
+int x, y, fruitx, fruity, flag;
+
 extern "C" {
-#include "stdio.h"
-    void print() {
-        std::printf("hii");
-    }
+    #include "stdio.h"
+    int printf(const char* format, ...);
 }
 
 
 int main()
 {
     srand(time(0));// Initialize random number generator.
-    cout<<"Random numbers generated between 1 and 10:"<<endl;
-    int a ,b;
-    int c = 5,d = 5;
-    randPposition(&a,&b);
-    cout<<a<<" and "<<b;
-    gameTest(&c, &d, &a,&b);
-    cout<<a<<" and "<<b<<"\n";
-    runEmbedPython();
+    setup(&x,&y,&fruitx,&fruity,&height,&width,&gameover,&score);
+//    while(!kbhit())
+//        sleep(1);
+//        puts("Press a key!");
+//    printf("You pressed '%c'!\n", getchar());
+    while(!gameover){
+        draw(&x,&y,&i,&j,&width,&height,&fruitx,&fruity,&score);
+        input(&flag,&gameover);
+        logic(&flag,&x,&y,&gameover,&height,&width,&fruitx,&fruity,&score);
+    }
     return 0;
 }
