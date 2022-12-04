@@ -149,6 +149,7 @@ void logic(int *flag,int *x,int *y,int *gameover,int *height,int *width,int *fru
 
 void draw(int *x,int *y,int *i,int *j,int *width,int *height,int *fruitx,int *fruity,int *score)
 {
+    system(R"(printf \'\\033\')");
     for (*i = 0; *i < *height; *i+=1) {
         for (*j = 0; *j < *width; *j+=1) {
             if (*i == 0 || *i == *width - 1
@@ -173,7 +174,7 @@ void draw(int *x,int *y,int *i,int *j,int *width,int *height,int *fruitx,int *fr
     // game ends
     printf("score = %d", *score);
     printf("\n");
-    printf("press X to quit the game");
+    printf("press X to quit the game\n");
 }
 
 #endif //GAME_SNAKE_H
