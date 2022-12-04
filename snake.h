@@ -17,6 +17,7 @@ int randPposition(int* a, int* b){
     return 0;
 }
 
+//This is only for testing now!!
 int gameTest(int *currX,int *currY,int *posX = 0,int *posY = 0, int mode = 1){
     printf("\ngameTest started\n");
     while (mode == 1){
