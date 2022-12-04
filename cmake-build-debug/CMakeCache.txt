@@ -230,6 +230,9 @@ game_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 game_SOURCE_DIR:STATIC=/home/soham/Documents/cpp/game
 
+//The directory containing a CMake configuration file for pypackage.
+pypackage_DIR:PATH=pypackage_DIR-NOTFOUND
+
 
 ########################
 # INTERNAL cache entries

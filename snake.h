@@ -3,6 +3,7 @@
 //
 #include <stdlib.h>
 #include <ctime>
+#include "Python.h"
 
 #ifndef GAME_SNAKE_H
 #define GAME_SNAKE_H
@@ -34,6 +35,29 @@ int gameTest(int *currX,int *currY,int *posX = 0,int *posY = 0, int mode = 1){
             printf("\n %d ,%d\n",*currX,*currY);
         }
     }
+    return 0;
+}
+
+#define QUOTE(...) #__VA_ARGS__
+const char *pyCode = QUOTE(
+        import os;
+        import sys;
+        sys.path.append('/home/soham/Documents/cpp/game');
+        print("File location using os.getcwd():", os.getcwd());
+        print('Hello from Python!!');
+);
+char *charTostr(char destination[], char source)
+{
+    destination[0] = source;	// copy the character into the string
+    destination[1] = '\0';		// null-terminate the string
+    return destination;			// common convention for str functions
+}
+
+int runEmbedPython()
+{
+    Py_Initialize();
+    PyRun_SimpleString(pyCode);
+    Py_Finalize();
     return 0;
 }
 
