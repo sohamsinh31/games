@@ -5,10 +5,10 @@
 #include "Python.h"
 #include <curses.h>
 #include <stdlib.h>
-#include "headers/conio.h"
+#include "conio.h"
 #include <unistd.h>
 #include "ncurses.h"
-#include "headers/kbhit.h"
+#include "kbhit.h"
 #ifndef GAME_SNAKE_H
 #define GAME_SNAKE_H
 
@@ -74,24 +74,38 @@ void setup(int *x,int *y,int *fruitx,int *fruity,int *height,int *width,int *gam
 }
 
 
-int runEmbedPython()
+int getNative()
 {
     Py_Initialize();
+    PyObject *myResult = NULL;
     PyRun_SimpleString(pyCode);
+    PyObject* myModuleString = (PyObject *) PyUnicode_FromString((char *) "pypackage.getInput");
+    PyObject* myModule = PyImport_Import(myModuleString);
+    if(!myModule){
+        goto done;
+    }
+
+    char c;
+    myResult = PyObject_CallMethod(myModule,"getchar",NULL);
+    c = PyUnicode_AsUTF8(myResult)[0];
+
+    if(!myResult){
+        goto done;
+    }
+    done:
+    PyErr_Print();
+    Py_CLEAR(myResult);
+    Py_CLEAR(myModule);
+
     Py_Finalize();
-    return 0;
+    return c;
 }
 
 void input(int *flag,int *gameover)
 {
-    unsigned char inp;
-    //inp = kbhit();
-    //printf("%d",kbhit());
-    do {
-    //while (kbhit()) {
-        inp = getchar();
-        //sprintf("%c",inp);
-        switch (inp) {
+
+    //do {
+        switch (getNative()) {
             case 'a':
                 *flag = 1;
                 break;
@@ -108,12 +122,12 @@ void input(int *flag,int *gameover)
                 *gameover = 1;
                 break;
         }
-    } while (kbhit());
+    //} while (getNative() != 'x');
 }
 
 void logic(int *flag,int *x,int *y,int *gameover,int *height,int *width,int *fruitx,int *fruity,int *score)
 {
-    sleep(0.01);
+    //sleep(0.01);
     switch (*flag) {
         case 1:
             *y-=1;

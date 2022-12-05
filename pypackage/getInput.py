@@ -14,8 +14,8 @@ def getchar():
     return char
 
 
-while True:
-    c = getchar()
-    print("Key is %s" % c)
-    if c == 'x':
-        break;
+# while True:
+#     c = getchar()
+#     print("Key is %s" % c)
+#     if c == 'x':
+#         break;

@@ -2,14 +2,14 @@
 #include <ctime>
 #include <cstdlib>
 #include "string"
-#include "snake.h"
+#include "headers/snake.h"
 #include "Python.h"
 
 using namespace std;
 
-int i, j, height = 20, width = 20;
+int i, j, height = 30, width = 30;
 int gameover, score;
-int x, y, fruitx, fruity, flag;
+int x, y, fruitx, fruity, flag = 4;
 
 extern "C" {
     #include "stdio.h"
