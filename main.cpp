@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include "string"
 #include "snake.h"
+#include "Python.h"
 
 using namespace std;
 
@@ -19,11 +20,8 @@ extern "C" {
 int main()
 {
     srand(time(0));// Initialize random number generator.
+    //runEmbedPython();
     setup(&x,&y,&fruitx,&fruity,&height,&width,&gameover,&score);
-//    while(!kbhit())
-//        sleep(1);
-//        puts("Press a key!");
-//    printf("You pressed '%c'!\n", getchar());
     while(!gameover){
         draw(&x,&y,&i,&j,&width,&height,&fruitx,&fruity,&score);
         input(&flag,&gameover);

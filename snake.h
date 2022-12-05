@@ -8,6 +8,7 @@
 #include "headers/conio.h"
 #include <unistd.h>
 #include "ncurses.h"
+#include "headers/kbhit.h"
 #ifndef GAME_SNAKE_H
 #define GAME_SNAKE_H
 
@@ -45,7 +46,7 @@ const char *pyCode = QUOTE(
         import sys;
         sys.path.append('..');
         //print('Hello from Python!!');
-        //from pypackage import testPy
+        from pypackage import getInput;
 );
 char *charTostr(char destination[], char source)
 {
@@ -83,8 +84,14 @@ int runEmbedPython()
 
 void input(int *flag,int *gameover)
 {
-    while (!kbhit()) {
-        switch (getchar()) {
+    unsigned char inp;
+    //inp = kbhit();
+    //printf("%d",kbhit());
+    do {
+    //while (kbhit()) {
+        inp = getchar();
+        //sprintf("%c",inp);
+        switch (inp) {
             case 'a':
                 *flag = 1;
                 break;
@@ -101,7 +108,7 @@ void input(int *flag,int *gameover)
                 *gameover = 1;
                 break;
         }
-    }
+    } while (kbhit());
 }
 
 void logic(int *flag,int *x,int *y,int *gameover,int *height,int *width,int *fruitx,int *fruity,int *score)
@@ -149,7 +156,7 @@ void logic(int *flag,int *x,int *y,int *gameover,int *height,int *width,int *fru
 
 void draw(int *x,int *y,int *i,int *j,int *width,int *height,int *fruitx,int *fruity,int *score)
 {
-    system(R"(printf '\033')");
+    system("clear");
     for (*i = 0; *i < *height; *i+=1) {
         for (*j = 0; *j < *width; *j+=1) {
             if (*i == 0 || *i == *width - 1
@@ -169,7 +176,9 @@ void draw(int *x,int *y,int *i,int *j,int *width,int *height,int *fruitx,int *fr
             }
         printf("\n");
         }
-
+    printf("\nYour score is: %d \n",*score);
 }
+
+
 
 #endif //GAME_SNAKE_H
