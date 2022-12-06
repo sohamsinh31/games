@@ -2,40 +2,70 @@
 // Created by soham on 3/12/22.
 //
 //#include <Python.h>
-//#include "headers//snake.h"
-//#define QUOTE(...) #__VA_ARGS__
-//const char *pyCode = QUOTE(
-//        import os;
-//        import sys;
-//        sys.path.append('..');
-//        //from pypackage import getInput;
-//);
-
-//int main(){
-//    Py_Initialize();
-//    PyObject *myResult = NULL;
-//    PyRun_SimpleString(pyCode);
-//    PyObject* myModuleString = (PyObject *) PyUnicode_FromString((char *) "pypackage.getInput");
-//    PyObject* myModule = PyImport_Import(myModuleString);
-//    if(!myModule){
-//        goto done;
-//    }
-//    char c;
-//    do {
-//        myResult = PyObject_CallMethod(myModule,"getchar",NULL);
-//        c = PyUnicode_AsUTF8(myResult)[0];
-//    } while (c != 'x');
+//#include "stdio.h"
+//#include "headers/snake.h"
+//#include<stdlib.h>
 //
-//    if(!myResult){
-//        goto done;
-//    }
-//    done:
-//        PyErr_Print();
-//        Py_CLEAR(myResult);
-//        Py_CLEAR(myModule);
+//struct data
+//{
+//    int data;
+//    char *name;
+//    struct data *next;
+//};
 //
-//    Py_Finalize();
-//        printf("%c",getNative());
-//        return 0;
+//
+//void addLast(struct data **head, int val,char* name)
+//{
+//    //create a new data
+//    struct data *newData = malloc(sizeof(struct data));
+//    newData->data = val;
+//    newData->name= name;
+//    newData->next = NULL;
+//
+//    //if head is NULL, it is an empty list
+//    if(*head == NULL)
+//        *head = newData;
+//        //Otherwise, find the last data and add the newData
+//    else
+//    {
+//        struct data *lastData = *head;
+//
+//        //last data's next address will be NULL.
+//        while(lastData->next != NULL)
+//        {
+//            lastData = lastData->next;
+//        }
+//
+//        //add the newData at the end of the linked list
+//        lastData->next = newData;
+//    }
+//
 //}
-
+//
+//void printList(struct data *head)
+//{
+//    struct data *temp = head;
+//
+//    //iterate the entire linked list and print the data
+//    while(temp != NULL)
+//    {
+//        printf("%s->", temp->name);
+//        temp = temp->next;
+//    }
+//    printf("NULL\n");
+//}
+//
+//int main()
+//{
+//    struct data *head = NULL;
+//
+//    addLast(&head, 10, (char *) "soham");
+//    addLast(&head,20,(char*) "jatin");
+//    addLast(&head,30,(char*) "hii");
+//
+//    printList(head);
+//
+//    return 0;
+//}
+//
+//
