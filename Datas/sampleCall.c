@@ -12,8 +12,12 @@ struct data
     int data;
     char *name;
     struct data *next;
+    int (*func)(int x, int y);
 };
 
+int *max(int x,int y){
+    printf("\n%d and %d\n",x,y);
+}
 
 void addLast(struct data **head, int val,char* name)
 {
@@ -22,6 +26,7 @@ void addLast(struct data **head, int val,char* name)
     newData->data = val;
     newData->name= name;
     newData->next = NULL;
+    newData->func = max(10,20);
 
     //if head is NULL, it is an empty list
     if(*head == NULL)
@@ -61,8 +66,6 @@ int call()
     struct data *head = NULL;
 
     addLast(&head, 10, (char *) "soham");
-    addLast(&head,20,(char*) "jatin");
-    addLast(&head,30,(char*) "hii");
 
     printList(head);
 
