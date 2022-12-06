@@ -6,6 +6,7 @@
 #include "stdio.h"
 #include <stdlib.h>
 
+//Call for data for on internet.
 struct data
 {
     int data;
